@@ -112,38 +112,38 @@ void TeleopRosAria::keyLoop()
     	  angular_ = 0;
     	  dirty = true;
     	  break;
-	case KEYCODE_A:
-	  ROS_DEBUG("INCREASE LINEAR SPEED");
-	  current_linear_ += step_linear_;
-	  sprintf(printable, "Linear speed: %02f", current_linear_);
-	  puts(printable);
-	  dirty=true;
-	  break;
-	case KEYCODE_Z:
-	  ROS_DEBUG("DECREASE LINEAR SPEED");
-          current_linear_ -= step_linear_;
-	  if(current_linear_ < 0)
-	      current_linear_ = 0;
-          sprintf(printable, "Linear speed: %02f", current_linear_);
-          puts(printable);
-          dirty=true;
-          break;
-	case KEYCODE_S:
-	  ROS_DEBUG("INCREASE ANGULAR SPEED");
-          current_angular_ += step_angular_;
-          sprintf(printable, "Angular speed: %02f", current_angular_);
-          puts(printable);
-          dirty=true;
-          break;
-	case KEYCODE_X:
-	  ROS_DEBUG("DECREASE LINEAR SPEED");
-          current_angular_ -= step_angular_;
-	  if(current_angular_ < 0)
-	      current_angular_ = 0;
-          sprintf(printable, "Angular speed: %02f", current_angular_);
-          puts(printable);
-          dirty=true;
-          break;
+    	case KEYCODE_A:
+    	  ROS_DEBUG("INCREASE LINEAR SPEED");
+    	  current_linear_ += step_linear_;
+    	  sprintf(printable, "Linear speed: %02f", current_linear_);
+    	  puts(printable);
+    	  dirty=true;
+    	  break;
+    	case KEYCODE_Z:
+    	  ROS_DEBUG("DECREASE LINEAR SPEED");
+              current_linear_ -= step_linear_;
+    	  if(current_linear_ < 0)
+    	      current_linear_ = 0;
+              sprintf(printable, "Linear speed: %02f", current_linear_);
+              puts(printable);
+              dirty=true;
+              break;
+    	case KEYCODE_S:
+    	  ROS_DEBUG("INCREASE ANGULAR SPEED");
+              current_angular_ += step_angular_;
+              sprintf(printable, "Angular speed: %02f", current_angular_);
+              puts(printable);
+              dirty=true;
+              break;
+    	case KEYCODE_X:
+    	  ROS_DEBUG("DECREASE LINEAR SPEED");
+              current_angular_ -= step_angular_;
+    	  if(current_angular_ < 0)
+    	      current_angular_ = 0;
+              sprintf(printable, "Angular speed: %02f", current_angular_);
+              puts(printable);
+              dirty=true;
+              break;
     	case KEYCODE_SPACE:
     	  ROS_DEBUG("STOP");
     	  linear_ = 0;
@@ -153,6 +153,7 @@ void TeleopRosAria::keyLoop()
       case KEYCODE_Q:
         ROS_DEBUG("QUIT");
         ROS_INFO_STREAM("You quit the teleop successfully");
+        tcsetattr(kfd, TCSANOW, &cooked);
         return;
         break;
   	}
